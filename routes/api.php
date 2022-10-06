@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AutoresController;
+use App\Http\Controllers\Api\LivrosController;
 use App\Models\Autor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/autores', AutoresController::class);
+
+Route::post('/autores/livros', [LivrosController::class, 'store']);
