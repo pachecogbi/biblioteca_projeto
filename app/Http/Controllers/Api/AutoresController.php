@@ -13,10 +13,15 @@ class AutoresController extends Controller
     public function index(Request $request)
     {
         $query = Autor::query();
+
+        if($request->has('nome')){
+            $query->where('nome', $request->nome);
+        }
+
         return $query->paginate(5);
     }
 
-    public function store(Request $request)
+    public function store(AutoresRequest $request)
     {
         return Autor::create($request->all());
     }
@@ -24,10 +29,16 @@ class AutoresController extends Controller
     public function show($id)
     {
         $autor = Autor::with('livros')->find($id);
+
+        if ($autor === null) {
+            return response()
+                ->json(['message' => 'Autor inexistente.']);
+        }
+
         return $autor;
     }
 
-    public function update(Autor $autor, Request $request)
+    public function update(Autor $autor, AutoresRequest $request)
     {
         $autor->fill($request->all())
             ->save();

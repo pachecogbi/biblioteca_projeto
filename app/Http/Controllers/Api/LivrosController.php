@@ -3,27 +3,50 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LivrosRequest;
+use App\Mail\LivroMail;
 use App\Models\Autor;
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LivrosController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $query = Livro::query();
+
+        if($request->has('titulo')){
+            $query->where('titulo', $request->nome);
+        }
+
         return $query->paginate(5);
     }
 
     public function store(Request $request, Autor $autor)
     {
-        return $autor->find($request['id'])->livros()->create($request->all());
+        $autor = $autor->find($request['id'])->livros()->create($request->all());
+
+        return $autor;
+
+        $email = new LivroMail(
+            $request['titulo'],
+            $teste = 'hello'
+        );
+
+        Mail::to($request->user())->send($email);
     }
 
     public function show($id)
     {
         $livros = Livro::with('autor')->find($id);
+
+        if ($livros === null) {
+            return response()
+                ->json(['message' => 'Livro inexistente.']);
+        }
+
         return $livros;
     }
 
