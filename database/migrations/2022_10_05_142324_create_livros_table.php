@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tipo_capa', 55);
             $table->string('idioma', 55);
             $table->date('ano_publicacao');
-            $table->integer('preco');
+            $table->integer('paginas');
             $table->timestamps();
         });
     }

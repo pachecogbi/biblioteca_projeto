@@ -15,18 +15,8 @@ class Livro extends Model
         'tipo_capa',
         'idioma',
         'ano_publicacao',
-        'preco'
+        'paginas'
     ];
-
-    public function getPrecoAttribute()
-    {
-        return $this->attributes['preco'] / 100;
-    }
-
-    public function setPrecoAttribute($attr)
-    {
-        return $this->attributes['preco'] = $attr * 100;
-    }
 
     public function autor()
     {

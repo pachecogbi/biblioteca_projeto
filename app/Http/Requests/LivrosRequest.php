@@ -24,14 +24,13 @@ class LivrosRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => ['required', 'integer'],
             'titulo' => ['required', 'min:3'],
             'editora' => ['required', 'min:3'],
             'genero' => ['required', 'min:3'],
             'tipo_capa' => ['required', 'min:3'],
             'idioma' => ['required', 'min:3'],
             'ano_publicacao' => ['required', 'min:3'],
-            'preco' => ['required', 'integer']
+            'paginas' => ['required', 'integer']
         ];
     }
 }

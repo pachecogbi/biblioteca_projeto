@@ -38,12 +38,12 @@ class AutoresController extends Controller
         return $autor;
     }
 
-    public function update(Autor $autor, AutoresRequest $request)
+    public function update(int $id, AutoresRequest $request)
     {
-        $autor->fill($request->all())
-            ->save();
+        Autor::where('id', $id)->update($request->all());
 
-        return $autor;
+        return response()
+            ->json(['message'=> 'Autor Atualizado com sucesso']);
     }
 
     public function destroy(int $id)
