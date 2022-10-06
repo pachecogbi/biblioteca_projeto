@@ -17,7 +17,6 @@ class Livro extends Model
         'ano_publicacao',
         'preco'
     ];
-    protected $with = ['autor'];
 
     public function getPrecoAttribute()
     {
