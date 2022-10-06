@@ -12,7 +12,8 @@ class LivrosController extends Controller
 
     public function index()
     {
-
+        $query = Livro::query();
+        return $query->paginate(5);
     }
 
     public function store(Request $request, Autor $autor)
