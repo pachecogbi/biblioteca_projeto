@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AutoresController;
 use App\Http\Controllers\Api\LivrosController;
+use App\Http\Controllers\Api\GeneroController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/autores', AutoresController::class);
     Route::apiResource('/livros', LivrosController::class);
+    Route::apiResource('/generos', GeneroController::class);
 });
 
 Route::post('/login', function (Request $request) {

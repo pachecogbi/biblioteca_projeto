@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('livros', function (Blueprint $table) {
             $table->id();
             $table->foreignId('autor_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('genero_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('titulo', 128);
             $table->string('editora', 55);
-            $table->string('genero', 55);
             $table->string('tipo_capa', 55);
             $table->string('idioma', 55);
             $table->date('ano_publicacao');

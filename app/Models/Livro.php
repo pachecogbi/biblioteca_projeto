@@ -9,9 +9,10 @@ class Livro extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'autor_id',
+        'genero_id',
         'titulo',
         'editora',
-        'genero',
         'tipo_capa',
         'idioma',
         'ano_publicacao',
@@ -21,5 +22,10 @@ class Livro extends Model
     public function autor()
     {
         return $this->belongsTo(Autor::class);
+    }
+
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class);
     }
 }

@@ -19,6 +19,10 @@ class Autor extends Model
         return $this->hasMany(Livro::class);
     }
 
+    public function generos(){
+        return $this->hasManyThrough(Genero::class, Livro::class);
+    }
+
     public static function booted()
     {
         self::addGlobalScope('ordered', function (Builder $queryBuilder) {

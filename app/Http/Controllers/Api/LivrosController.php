@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genero;
 use App\Http\Requests\LivrosRequest;
 use App\Mail\LivroMail;
 use App\Models\Autor;
@@ -17,25 +18,16 @@ class LivrosController extends Controller
     {
         $query = Livro::query();
 
-        if($request->has('titulo')){
+        if ($request->has('titulo')) {
             $query->where('titulo', $request->nome);
         }
 
         return $query->paginate(5);
     }
 
-    public function store(Request $request, Autor $autor)
+    public function store(Request $request)
     {
-        $autor = $autor->find($request['id'])->livros()->create($request->all());
-
-        return $autor;
-
-        $email = new LivroMail(
-            $request['titulo'],
-            $teste = 'hello'
-        );
-
-        Mail::to($request->user())->send($email);
+        return Livro::create($request->all());
     }
 
     public function show($id)
