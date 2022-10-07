@@ -11,7 +11,6 @@ class Genero extends Model
     use HasFactory;
     protected $fillable = [
         'nome_genero',
-        'quantidade'
     ];
     public $timestamps = false;
 
