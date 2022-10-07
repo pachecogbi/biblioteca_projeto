@@ -21,7 +21,7 @@ class LivroMail extends Mailable
         public string $nomeAutor
     )
     {
-
+        $this->subject = "Livro '$nomeLivro' criado!";
     }
 
     /**
@@ -31,6 +31,6 @@ class LivroMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.livro-mail');
+        return $this->markdown('mail.livro-mail');
     }
 }

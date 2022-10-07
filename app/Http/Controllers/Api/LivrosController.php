@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LivrosRequest;
+use App\Mail\LivroMail;
 use App\Models\Livro;
+use App\Models\Autor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LivrosController extends Controller
 {
@@ -23,7 +26,17 @@ class LivrosController extends Controller
 
     public function store(LivrosRequest $request)
     {
-        return Livro::create($request->all());
+        $livro = Livro::create($request->all());
+        $autor = Autor::find($request['autor_id']);
+
+        $email = new LivroMail(
+            $livro->titulo,
+            $autor->nome
+        );
+
+        Mail::to($request->user())->send($email);
+
+        return $livro;
     }
 
     public function show($id)
