@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LivrosRequest;
 use App\Models\Livro;
 use Illuminate\Http\Request;
 
 class LivrosController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(LivrosRequest $request)
     {
         $query = Livro::query();
 
@@ -20,7 +21,7 @@ class LivrosController extends Controller
         return $query->paginate(5);
     }
 
-    public function store(Request $request)
+    public function store(LivrosRequest $request)
     {
         return Livro::create($request->all());
     }
@@ -37,7 +38,7 @@ class LivrosController extends Controller
         return $livros;
     }
 
-    public function update(Request $request, Livro $livro)
+    public function update(LivrosRequest $request, Livro $livro)
     {
         $livro->fill($request->all())
             ->save();
