@@ -3,13 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Genero;
-use App\Http\Requests\LivrosRequest;
-use App\Mail\LivroMail;
-use App\Models\Autor;
 use App\Models\Livro;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class LivrosController extends Controller
 {
@@ -32,7 +27,7 @@ class LivrosController extends Controller
 
     public function show($id)
     {
-        $livros = Livro::with('autor')->find($id);
+        $livros = Livro::with('autor', 'genero')->find($id);
 
         if ($livros === null) {
             return response()

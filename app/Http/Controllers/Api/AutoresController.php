@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AutoresRequest;
 use App\Models\Autor;
+use App\Models\Livro;
 use Illuminate\Http\Request;
 
 class AutoresController extends Controller
@@ -26,9 +27,9 @@ class AutoresController extends Controller
         return Autor::create($request->all());
     }
 
-    public function show($id)
+    public function show($id, Livro $livro)
     {
-        $autor = Autor::with('livros')->find($id);
+        $autor = Autor::with('livros.genero')->find($id);
 
         if ($autor === null) {
             return response()

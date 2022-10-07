@@ -12,8 +12,8 @@ class GeneroController extends Controller
 
     public function index()
     {
-        $query = Genero::all(); // Alterar isso depois
-        return $query;
+        $query = Genero::query();
+        return $query->paginate(5);
     }
 
     public function store(GenerosRequest $request)
@@ -23,7 +23,7 @@ class GeneroController extends Controller
 
     public function show($id)
     {
-        $genero = Genero::with('livros.autores')->find($id);
+        $genero = Genero::with('livros.autor')->find($id);
 
         if ($genero === null) {
             return response()
