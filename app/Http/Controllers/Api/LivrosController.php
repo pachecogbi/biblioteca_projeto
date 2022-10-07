@@ -5,18 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Events\LivroCriado;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LivrosRequest;
-use App\Mail\LivroMail;
 use App\Models\Livro;
 use App\Models\Autor;
-use App\Models\User;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class LivrosController extends Controller
 {
 
-    public function index(LivrosRequest $request)
+    public function index(Request $request)
     {
         $query = Livro::query();
 
