@@ -40,7 +40,7 @@ class LivrosController extends Controller
     {
         $livros = Livro::with('autor', 'genero')->find($id);
 
-        if ($livros === null) {
+        if (!$livros) {
             return response()
                 ->json(['message' => 'Livro inexistente.']);
         }

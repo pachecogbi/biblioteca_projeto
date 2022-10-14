@@ -25,7 +25,7 @@ class GeneroController extends Controller
     {
         $genero = Genero::with('livros.autor')->find($id);
 
-        if ($genero === null) {
+        if (!$genero) {
             return response()
                 ->json(['message' => 'Gênero inexistente.']);
         }

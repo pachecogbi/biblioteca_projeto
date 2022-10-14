@@ -31,7 +31,7 @@ class AutoresController extends Controller
     {
         $autor = Autor::with('livros.genero')->find($id);
 
-        if ($autor === null) {
+        if (!$autor) {
             return response()
                 ->json(['message' => 'Autor inexistente.']);
         }
