@@ -50,8 +50,7 @@ class LivrosController extends Controller
 
     public function update(Request $request, Livro $livro)
     {
-        $livro->fill($request->all())
-            ->save();
+        $livro->fill($request->all())->save();
 
         return $livro;
     }
